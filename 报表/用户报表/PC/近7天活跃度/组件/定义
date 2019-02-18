@@ -1,0 +1,7 @@
+widget_dashboard
+js文件：
+http://echarts.baidu.com/dist/echarts.min.js
+初始化：
+widget_dashboard_init
+渲染：
+widget_dashboard_render

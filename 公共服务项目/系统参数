@@ -1,0 +1,82 @@
+系统参数
+超导为 ISysParamService common为 SysParamCtrl
+getParamAndCate----getParamAndCate
+updateSysParam----updateSysParam
+checkParamName----checkParamName
+checkParamCode----checkParamCode
+checkParamCateCode----checkParamCateCode
+getSysParam----getSysParamSuperDto
+isEmptySysparam----isEmptySysparam
+getCate----getCate
+getParamCate----getParamCate
+getTwoPram----getTwoPram
+removeParamPrivileges----无（和参数表无关）
+saveParamPrivileges----无（和参数表无关）
+queryParamPrivileges----getParamByCodeAndAppId（其中一个方法）
+queryGloballyParamList----queryGloballyParamList
+
+//改用接口调用2018.11.8 葛云龙
+sysParamCommonService
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/sysParam/getParamAndCate.do','com.xxy.om.common.controller.SysParamCtrl','getParamAndCate',NULL,0,'条件查询');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/sysParam/updateSysParam.do','com.xxy.om.common.controller.SysParamCtrl','updateSysParam',NULL,0,'更新操作');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/sysParam/checkParamName.do','com.xxy.om.common.controller.SysParamCtrl','checkParamName',NULL,0,'验证名字是否存在');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/sysParam/checkParamCode.do','com.xxy.om.common.controller.SysParamCtrl','checkParamCode',NULL,0,'验证编码是否存在');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/sysParam/checkParamCateCode.do','com.xxy.om.common.controller.SysParamCtrl','checkParamCateCode',NULL,0,'验证某个类型自定义是否存在（如：商学院学习时长自定义）');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/sysParam/getSysParamSuperDto.do','com.xxy.om.common.controller.SysParamCtrl','getSysParamSuperDto',NULL,0,'查询getSysParamSuperDto');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/sysParam/isEmptySysparam.do','com.xxy.om.common.controller.SysParamCtrl','isEmptySysparam',NULL,0,'检测是否有参数在参数类里面');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/sysParam/getCate.do','com.xxy.om.common.controller.SysParamCtrl','getCate',NULL,0,'加载栏目集合');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/sysParam/getParamCate.do','com.xxy.om.common.controller.SysParamCtrl','getParamCate',NULL,0,'根据字典类code 和应用id 获取当前类下面的参数列表');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/sysParam/getTwoPram.do','com.xxy.om.common.controller.SysParamCtrl','getTwoPram',NULL,0,'获取首页当中的啷个栏目');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/sysParam/queryGloballyParamList.do','com.xxy.om.common.controller.SysParamCtrl','queryGloballyParamList',NULL,0,'获取全局的参数值，也可以获取置顶企业的参数值');
+
+2018.11.20
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/sysParam/getParamByCodeAndAppId.do','com.xxy.om.common.controller.SysParamCtrl','getParamByCodeAndAppId',NULL,0,'根据code和appId获取系统参数');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/sysParam/queryByPage.do','com.xxy.om.common.controller.SysParamCtrl','queryByPage',NULL,0,'分页查询所有数据');
+
+涉及到的上一层调用类，需要调整的基类方法更改
+@Autowired
+private BaseCommonService baseCommonService;
+
+//更改为调用公共服务接口 2018.11.22 葛云龙
+SysParam param = baseCommonService.getEntity(sysOrgShop.getStoreLevel(), CommonHandleUtil.SYS_PARAM_CLASS_NAME,SysParam.class);
+
+ArticleAction（无）
+ContMgnAPI（无）
+FeedBackAccess（无）
+MetaInfo（无）
+NewFeedbackAction
+OrgAction（无）
+ParamAction
+ParamCateAction（无）
+ProductAccess（无）
+SysOrgEnterpriseServiceImpl
+SysOrgShopServiceImpl（无）
+SysParamAPI（无）
+SysParamServiceImpl
+UserAccess（无）

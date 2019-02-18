@@ -1,0 +1,7 @@
+path_name
+and gp.path_name like '%@path_name%'
+path_name
+
+checkpoint_name
+and gc.name like '%@checkpoint_name%'
+checkpoint_name

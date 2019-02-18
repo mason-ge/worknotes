@@ -1,0 +1,57 @@
+(
+		SELECT
+			t2.path_name AS path_name,
+			t3.name AS checkpoint_name,
+			su1.user_code AS student_code,
+			su1.name AS student_name,
+			su2.user_code AS teacher_code,
+			su2. NAME AS teacher_name,
+		IF (
+			t6.student_assess_detail_id IS NULL,
+			'未评估',
+			'已评估'
+		) AS is_assess,
+	        t5.total_score,
+		t5.score,
+		t6.create_time AS evaluate_time
+	FROM
+		growup_checkpoint_detail t1
+	LEFT JOIN growup_path t2 ON (
+		t1.growup_path_id = t2.growup_path_id
+		AND t2.app_id = '@##org_app_id##@'
+	)
+	LEFT JOIN growup_checkpoint t3 ON (
+		t1.checkpoint_id = t3.checkpoint_id
+		AND t3.app_id = '@##org_app_id##@'
+	)
+	LEFT JOIN growup_checkpoint_man_detail t4 ON (
+		t1.user_id = t4.user_id
+		AND t4.app_id = '@##org_app_id##@'
+	)
+ 
+	LEFT JOIN growup_student_assess_star t5 ON (
+		t1.user_id = t5.create_user
+		AND t1.checkpoint_id = t5.checkpoint_id
+		AND t5.app_id = '@##org_app_id##@'
+	)
+
+	LEFT JOIN growup_student_assess_result t6 ON (
+		t1.user_id = t6.create_user
+		AND t6.app_id = '@##org_app_id##@'
+	)
+	LEFT JOIN sys_user su1 ON (
+		t1.user_id = su1.sys_user_id
+		AND su1.app_id = '@##org_app_id##@'
+	)
+	LEFT JOIN sys_user su2 ON (
+		t4.teaching_user_id = su2.sys_user_id
+		AND su2.app_id = '@##org_app_id##@'
+	)
+	WHERE
+		t1.app_id = '@##org_app_id##@'
+		{#ph#userName#ph#}
+		{#ph#post#ph#}
+		{#ph#teacher#ph#}
+		{#ph#path_name#ph#}
+		{#ph#checkpoint_name#ph#}
+	) TBL

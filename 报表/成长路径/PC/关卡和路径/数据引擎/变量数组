@@ -1,0 +1,7 @@
+checkpoint_name
+and TBL.checkpoint_name like '%@checkpoint_name%'
+checkpoint_name
+
+path_name
+and TBL.path_name like '%@path_name%'
+path_name

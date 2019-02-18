@@ -1,0 +1,15 @@
+shop_code
+and TBL.shop_code like '%@shop_code%'
+shop_code
+
+task_name
+and TBL.task_name like '%@task_name%'
+task_name
+
+shop_name
+and TBL.shop_name like '%@shop_name%'
+shop_name
+
+area_name
+and TBL.area_name like '%@area_name%'
+area_name

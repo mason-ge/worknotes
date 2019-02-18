@@ -1,0 +1,23 @@
+is_feedback
+and TBA.is_feedback like '%@is_feedback%'
+is_feedback
+
+store_name
+and TBL.shop_name like '%@store_name%'
+store_name
+
+feedback_name
+and TBA.feedback_name like '%@feedback_name%'
+feedback_name
+
+task_name
+and t.task_name like '%@task_name%'
+task_name
+
+area_name
+and TBL.area_name like '%@area_name%'
+area_name
+
+feedback_login
+and TBA.feedback_login like '%@feedback_login%'
+feedback_login

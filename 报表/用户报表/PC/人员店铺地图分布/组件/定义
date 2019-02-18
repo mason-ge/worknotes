@@ -1,0 +1,8 @@
+widget_dt
+自定义
+js文件：
+http://echarts.baidu.com/dist/echarts.min.js,http://echarts.baidu.com/asset/map/js/china.js
+初始化方法：
+widget_dt_init
+渲染方法：
+widget_dt_render

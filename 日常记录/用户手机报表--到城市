@@ -1,0 +1,203 @@
+<script>
+function widget_dt_init() {
+    console.log('execute: widget_dt_init');
+    var widget_dt = echarts.init(document.getElementById('widget_dt'));
+    var option = {
+            
+        };
+    widget_dt.setOption(option);
+}
+
+
+function widget_dt_render(data) {
+    var seriesData = [];
+    var myData = [];
+    var geoCoordMap = {};
+    if (data && data.data && data.data.data && data.data.data.rows) {
+        myData = data.data.data.rows;
+        convertData(myData);
+    }    
+}
+
+
+function convertData(data){
+    var latLngArray = [];
+    var latitude,longitude,latLng;
+    for (var i = 0; i < data.length; i++) {
+        longitude = data[i].longitude;
+        latitude = data[i].latitude;
+        latLng = longitude+","+latitude;
+        latLngArray.push({
+            "latitude": latitude,
+            "longitude": longitude
+        });
+    }
+    getCity(0,latLngArray,data);
+}
+var index = 0;
+var cityAdd = [];
+function getCity(index,latLngArray,data){
+    var res = [];
+    var latitude,longitude,city,cntPeopleIn,latLng;
+    //存储每个城市对应的人数
+    var mapPeople = new Map();
+    // 存储每个城市对应的经纬度，这里可能多个经纬度同一个城市
+    var mapLatLng = new Map();
+    var mapKey,mapValue;
+    var mapKey2,mapValue2;
+    if(index < latLngArray.length){
+        longitude = latLngArray[index].longitude;
+        latitude = latLngArray[index].latitude;
+        var url = "http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location="+latitude+","+longitude+"&output=json&pois=1&ak=dlUOxKVxx1mPZXss6XHMACfOTtEEQdGD";
+        $.ajax({
+          url: url,
+          type: 'GET',
+          async: false,
+          dataType: "jsonp",
+          contentType: 'application/json; charset=utf-8',
+          success: function(result){
+            cityAdd.push({
+                add : longitude+","+latitude,
+                name : result.result.addressComponent.city
+            })
+            if (index < latLngArray.length) {
+                getCity(index + 1, latLngArray,data);                    
+            }
+           }
+        });
+    }else{
+        //此处执行以下代码，此时cityAdd应为全部push完成
+        for (var i = 0; i < cityAdd.length; i++) {
+            for (var j = 0; j < data.length; j++) {
+                var name = cityAdd[i].name;
+                var add = cityAdd[i].add;
+                longitude = data[j].longitude;
+                latitude = data[j].latitude;
+                cntPeopleIn = data[j].cnt_people_in;
+                var latLngAll = longitude+","+latitude;
+                if(add == latLngAll){
+                    mapLatLng.set(name,add)
+                if(mapPeople.has(name)){
+                    mapValue = mapPeople.get(name);
+                    mapPeople.set(name,mapValue*1+cntPeopleIn*1);
+                }else{
+                    mapPeople.set(name,cntPeopleIn);
+                }
+            }
+          }
+        }
+        mapPeople.forEach(function (value1, key1, map1) {
+            mapLatLng.forEach(function (value2, key2, map2) {
+                if(key1 == key2){
+                    res.push({
+                        name: key1,
+                        value: [value2.split(",")[0],value2.split(",")[1], value1]
+                    });
+                }
+            });
+        });
+        var widget_dt = echarts.init(document.getElementById('widget_dt'));
+        var option = {
+            animation: true,
+            animationDuration: 1000,
+            animationEasing: 'cubicInOut',
+            animationDurationUpdate: 1000,
+            animationEasingUpdate: 'cubicInOut',
+            title: {
+                text: '店铺分布',
+            },
+            geo: {
+                map: 'china',
+                //left: '10',
+                //right: '15%',
+                center: [117.98561551896913, 31.205000490896193],
+                zoom: 2.5,
+                roam: true,
+                label: {
+                    normal: {
+                        show: true,
+                        textStyle: {
+                            color: 'rgba(0,0,0,0.4)'
+                        }
+                    }
+                },
+                itemStyle: {
+                    normal:{
+                        borderColor: 'rgba(0, 0, 0, 0.3)'
+                    },
+                    emphasis:{
+                        areaColor: '#8A8A8A',
+                        shadowOffsetX: 0,
+                        shadowOffsetY: 0,
+                        shadowBlur: 20,
+                        borderWidth: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter:  function (params) {
+                    var value = params.value.toString();
+                    var index = value.lastIndexOf(","); 
+                    value = value.substring(index + 1, value.length);
+                    return params.name+'<br/>'+value+'人';
+                }
+            },
+            series: [{
+                type: 'scatter',
+                coordinateSystem: 'geo',
+                data: res,
+                label: {
+                    normal: {
+                        show: false,
+                        formatter: function (params) {
+                            var value = params.value.toString();
+                            var index = value.lastIndexOf(","); 
+                            value = value.substring(index + 1, value.length);
+                            return value;
+                        },
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: '#ddb926',
+                        position: 'right',
+                        show: true
+                    }
+                }
+            }, 
+            {
+                type: 'effectScatter',
+                coordinateSystem: 'geo',
+                data: res,
+                showEffectOn: 'emphasis',
+                rippleEffect: {
+                    brushType: 'stroke'
+                },
+                hoverAnimation: true,
+                       label: {
+                        normal: {
+                            show: false,
+                            formatter: function (params) {
+                                var value = params.value.toString();
+                                var index = value.lastIndexOf(","); 
+                                value = value.substring(index + 1, value.length);
+                                return value;
+                            },
+                        }
+                    },
+                itemStyle: {
+                    normal: {
+                        color: '#f4e925',
+                        shadowBlur: 10,
+                        shadowColor: '#333'
+                    }
+                },
+                zlevel: 1
+            }]
+        };
+        widget_dt.setOption(option);
+    }
+}
+</script>

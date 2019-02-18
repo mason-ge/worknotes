@@ -1,0 +1,39 @@
+user_name
+and TBL.user_name like '%@user_name%'
+user_name
+
+start_time_from
+and e.start_time >= '@start_time_from'
+start_time_from
+
+shop_name
+and TBL.shop_name like '%@shop_name%'
+shop_name
+
+create_time_to
+and e.create_time <= '@create_time_to'
+create_time_to
+
+start_time_to
+and e.start_time <= '@start_time_to'
+start_time_to
+
+exam_species
+and e.exam_species like '%@exam_species%'
+exam_species
+
+user_post
+and TBL.user_post like '%@user_post%'
+user_post
+
+exam_title
+and e.exam_title like '%@exam_title%'
+exam_title
+
+create_time_from
+and e.create_time >= '@create_time_from'
+create_time_from
+
+login_name
+and TBL.login_name like '%@login_name%'
+login_name

@@ -1,0 +1,19 @@
+path_name
+and t2.path_name like '%@post%'
+path_name
+
+userName
+and su1.name like '%@userName%'
+userName
+
+checkpoint_name
+and t3.name like '%@checkpoint_name%'
+checkpoint_name
+
+post
+and su1.user_post like '%@post%'
+post
+
+teacher
+and su2.name like '%@post%'
+teacher

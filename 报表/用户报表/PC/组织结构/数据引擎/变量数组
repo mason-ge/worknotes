@@ -1,0 +1,31 @@
+user_name
+and TBL.user_name like '%@user_name%'
+user_name
+
+create_time_start
+and TBL.create_time >= '@create_time_start'
+create_time_start
+
+user_post
+and TBL.user_post = '@user_post'
+user_post
+
+login_name
+and TBL.login_name like '%@login_name%'
+login_name
+
+entry_time_end
+and TBL.entry_time <= '@entry_time_end'
+entry_time_end
+
+entry_time_start
+and TBL.entry_time >= '@entry_time_start'
+entry_time_start
+
+shop_name
+and TBL.shop_name like '%@shop_name%'
+shop_name
+
+create_time_end
+and TBL.create_time <= '@create_time_end'
+create_time_end

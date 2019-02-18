@@ -1,0 +1,17 @@
+TBL.sys_user_id
+sys_user_id
+
+TBL.belong_org
+belong_org
+
+TBL.login_name
+login_name
+
+TBL.shop_name
+shop_name
+
+TBL.user_name
+user_name
+
+TBL.cnt_log
+cnt_log

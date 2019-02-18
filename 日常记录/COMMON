@@ -1,0 +1,16 @@
+D:\git\SSMdemo\src\main\java\demo\mapper
+git branch --set-upstream-to master origin/master
+
+MCLONuser@MCLON
+cjdg123456
+
+
+MCLON
+
+
+var videos='<video width="360" height="200" style="margin:15px auto;" controls="controls" preload="auto" 
+poster="http://www.laikabase.de/cp_view/images/userfiles/slideshows/19_thumb_Shift_Image1.jpg">
+<source src="'+datas.info+'" type="video/mp4" /><source src="'+datas.info+'" type="video/ogg"/>
+</video>';
+
+<source src="'+datas.info+'" type="video/webm"/>你浏览器不支持 video 功能，点击这里下载视频： <a href="'+datas.info+'">下载视频</a>

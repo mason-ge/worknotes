@@ -1,0 +1,30 @@
+(
+		SELECT
+			os.longitude,
+			os.latitude,
+			t.shop_name,
+			count(DISTINCT t.sys_user_id) AS cnt_people_in
+		FROM
+			sys_user t
+		LEFT JOIN sys_org_shop os ON (
+			t.belong_org = os.sys_org_id
+			AND t.app_id = os.app_id
+		)
+		WHERE
+			1 = 1
+		AND t.app_id = '@##org_app_id##@'
+		AND os.longitude IS NOT NULL
+		AND os.latitude IS NOT NULL
+		{#ph#login_name#ph#}
+		{#ph#user_name#ph#}
+		{#ph#shop_name#ph#}
+		{#ph#user_post#ph#}
+		{#ph#entry_time_start#ph#}
+		{#ph#entry_time_end#ph#}
+		{#ph#create_time_start#ph#}
+		{#ph#create_time_end#ph#}
+		GROUP BY
+			t.shop_name,
+			os.longitude,
+			os.latitude
+	) TBL

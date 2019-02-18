@@ -1,0 +1,17 @@
+exam_title
+and t.exam_title like '%@exam_title%'
+
+start_time_to
+and t.start_time <= '@start_time_to'
+
+create_time_to
+and t.create_time <= '@create_time_to'
+
+exam_species
+and t.exam_species like '%@exam_species%'
+
+create_time_from
+and t.create_time >= '@create_time_from'
+
+start_time_from
+and t.start_time >= '@start_time_from'

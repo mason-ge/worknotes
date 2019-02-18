@@ -1,0 +1,13 @@
+服务地址：
+http://139.129.204.152:801/om-web/growup/path/ck/detail/list.do
+请求方式：
+GET
+请求参数：
+accessToken=@##env_token##@
+类型：
+application/x-www-form-urlencoded;charset=UTF-8
+请求body：
+p=1&r=1000&disabled=0{#ph#userName#ph#}{#ph#checkpoint_name#ph#}{#ph#post#ph#}{#ph#teacher#ph#}{#ph#pathName#ph#}
+转换器：
+学员列表转换器
+

@@ -1,0 +1,17 @@
+TBL.user_post
+user_post
+
+TBL.checkpoint_name
+checkpoint_name
+
+TBL.user_id
+user_id
+
+TBL.login_name
+login_name
+
+TBL.shop_name
+shop_name
+
+TBL.user_name
+user_name

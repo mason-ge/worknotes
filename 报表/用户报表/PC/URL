@@ -1,0 +1,7 @@
+测试机
+http://bms.xxynet.com/bi-report-sg-dev/bi/report/lm/report.html?accessToken=6b33faf63fc89825083249c6d766efba_csb_web&reportId=9611940b-b535-4b70-bba6-d1d1674472c9
+正式机
+http://bms.xxynet.com/bi-report-sg/bi/report/lm/report.html?accessToken=6b33faf63fc89825083249c6d766efba_csb_web&reportId=9611940b-b535-4b70-bba6-d1d1674472c9
+
+正式机发布地址
+http://bms.xxynet.com/bi-report-sg/bi/report/lm/report.html?accessToken=$access_token&reportId=9611940b-b535-4b70-bba6-d1d1674472c9

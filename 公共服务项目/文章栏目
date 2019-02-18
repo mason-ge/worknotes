@@ -1,0 +1,68 @@
+超导为 IArticleColumnOneService  common为 ArticleColumnOneCtrl
+queryList---getListByConditionAndAuth
+getList---getListByAppIdAndSuperId
+getAppColumnOne---getOneByCondition
+getListColumn----getListColumnByAppIdAndLvl
+checkColumn---无(和ArticleColumnOne无关)
+getAppColumn---getColumnListByAppId
+getColumnIds---getListByColumnIds
+getColumnIdsWithStatus---getColumnIdsWithStatus
+getColumnByAppId---getColumnByAppIdLimitSuperId
+checkArticleColumn---checkArticleColumn
+queryColumnName---getColumnNameByRelColumnIds
+updateAcOByColumIds---updateAcOByColumIds
+checkModuleId---checkModuleId
+getMinNumByMouleId---getMinNumByMouleIdAndAppId
+getColumnListByAppId---getColumnListByAppId
+updateSort---updateSort
+loadColumnTree---loadColumnTree
+loadTreeCheckArtile----loadTreeCheckArtile
+loadTreeColSub----loadTreeColSub
+getColSubscriByAppId----getColSubscriByAppId
+checkColumnTopNum----getColumnByIds
+getArticleColumns----getArticleColumns
+
+//改用接口调用2018.11.7 葛云龙
+articleColumnCommonService
+
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/articleColumnOne/loadColumnTree.do','com.xxy.om.common.controller.ArticleColumnOneCtrl','loadColumnTree',NULL,0,'加载栏目树');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/articleColumnOne/loadTreeCheckArtile.do','com.xxy.om.common.controller.ArticleColumnOneCtrl','loadTreeCheckArtile',NULL,0,'加载从平台选过来的文章树');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/articleColumnOne/loadTreeColSub.do','com.xxy.om.common.controller.ArticleColumnOneCtrl','loadTreeColSub',NULL,0,'获取订阅栏目的树');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/articleColumnOne/getColSubscriByAppId.do','com.xxy.om.common.controller.ArticleColumnOneCtrl','getColSubscriByAppId',NULL,0,'查询指定企业所订阅的栏目');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/articleColumnOne/getColumnByIds.do','com.xxy.om.common.controller.ArticleColumnOneCtrl','getColumnByIds',NULL,0,'根据主键list获取文章列表');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/articleColumnOne/getArticleColumns.do','com.xxy.om.common.controller.ArticleColumnOneCtrl','getArticleColumns',NULL,0,'获取文章栏目树');
+
+
+
+com.vsvz.shopguide.contmgn.web.ArticleColumnAction
+
+
+涉及到的上一层调用类，需要调整的基类方法更改
+
+
+
+//更改为调用公共服务接口 2018.11.22 葛云龙
+
+@Autowired
+private BaseCommonService baseCommonService;
+
+AppModulesAction（无）
+ArticleAction
+ArticleApi（无）
+ArticleColumnAction
+ArticleColumnAPI
+ArticleColumnOneServiceImpl
+BbsQuserAnswerAPI（无）
+ContMgnAPI

@@ -1,0 +1,25 @@
+INSERT INTO dwh_yearly_user_bbs_activity_pic_order (
+	user_id,
+	app_id,
+	activity_id,
+	create_time,
+	like_num,
+	reply_num,
+	pic,
+	etl_process_time
+) SELECT
+	user_id,
+	app_id,
+	activity_id,
+	create_time,
+	like_num,
+	reply_num,
+	pic,
+	etl_process_time
+FROM
+	dwh_yearly_user_bbs_activity_pic t
+WHERE
+   1=1
+and t.pic not like '%.mp4%'
+ORDER BY
+	t.user_id,(t.like_num+t.reply_num) desc

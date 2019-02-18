@@ -1,0 +1,35 @@
+user_name
+and t.user_name like '%@user_name%'
+user_name
+
+login_name
+and t.login_name like '%@login_name%'
+login_name
+
+create_time_end
+and t.create_time <= '@create_time_end'
+create_time_end
+
+watch_range
+@watch_range
+watch_range
+
+shop_name
+and t.shop_name like '%@shop_name%'
+shop_name
+
+entry_time_end
+and t.entry_time <= '@entry_time_end'
+entry_time_end
+
+entry_time_start
+and t.entry_time >= '@entry_time_start'
+entry_time_start
+
+create_time_start
+and t.create_time >= '@create_time_start'
+create_time_start
+
+user_post
+and t.user_post = '@user_post'
+user_post

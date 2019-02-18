@@ -1,0 +1,27 @@
+area_name
+and TBL.area_name like '%@area_name%'
+area_name
+
+feedback_name
+and TBL.feedback_name like '%@feedback_name%'
+feedback_name
+
+us_flag
+and TBL.us_flag like '%@us_flag%'
+us_flag
+
+store_name
+and TBL.store_name like '%@store_name%'
+store_name
+
+task_name
+and TBL.task_name like '%@task_name%'
+task_name
+
+feedback_login
+and TBL.feedback_login like '%@feedback_login%'
+feedback_login
+
+client_name
+and TBL.client_name like '%@client_name%'
+client_name

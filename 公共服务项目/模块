@@ -1,0 +1,93 @@
+模块
+超导为 IModulesService common为 ModulesCtrl
+2018.10.31
+query----query
+getRootMod----getRootMod
+obtainModChildTree----getAllModulesByPage(其中一个方法)
+obtainModChildTree(List includeFuncs)----getAllModulesByPage(其中一个方法)
+obtainModTree----getAllModulesByPage(其中一个方法)
+obtainModTree1----getAllModulesByPage(其中一个方法)
+obtainModTree(List includeFuncs)----getAllModulesByPage(其中一个方法)
+handleMenuMemory----getAllModulesByPage(其中一个方法)
+guideFuncs----无(跟模块表无关)
+getAllMenu----getAllMenu
+getParentMenu----getParentMenu
+getMenuByParent----getMenuByParent
+getEnterpriseParentMenu----无
+getParentMenuAll----getParentMenuAll
+
+2018.11.1
+getModulesAll----getModulesAll
+saveModules----add(其中一个方法)
+getModules----getModulesByModId
+deleteAuthAssignmentFactMenu----updateModulesState(其中一个方法)
+getTowModules----getTowModules
+getByIdModules----getByIdModules
+editByIdModules----多个方法
+
+//改用接口调用2018.11.7 葛云龙
+modulesCommonService
+
+// 改为调用公共服务接口，2018.11.20 葛云龙
+List mods = this.getAllModulesByPage(p);
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/modules/query.do','com.xxy.om.common.controller.ModulesCtrl','query',NULL,0,'条件查询');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/modules/getRootMod.do','com.xxy.om.common.controller.ModulesCtrl','getRootMod',NULL,0,'获取一级目录');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/modules/getAllMenu.do','com.xxy.om.common.controller.ModulesCtrl','getAllMenu',NULL,0,'获取所有菜单');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/modules/getParentMenu.do','com.xxy.om.common.controller.ModulesCtrl','getParentMenu',NULL,0,'获取所有的一级菜单');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/modules/getMenuByParent.do','com.xxy.om.common.controller.ModulesCtrl','getMenuByParent',NULL,0,'根据父级编码获取菜单');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/modules/getParentMenuAll.do','com.xxy.om.common.controller.ModulesCtrl','getParentMenuAll',NULL,0,'获取admin账号的所有一级菜单');
+
+2018.11.1
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/modules/getModulesAll.do','com.xxy.om.common.controller.ModulesCtrl','getModulesAll',NULL,0,'获取所有模块');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/modules/getModulesByModId.do','com.xxy.om.common.controller.ModulesCtrl','getModulesByModId',NULL,0,'根据modId获取模块');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/modules/updateModulesState.do','com.xxy.om.common.controller.ModulesCtrl','updateModulesState',NULL,0,'更新模块状态');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/modules/getTowModules.do','com.xxy.om.common.controller.ModulesCtrl','getTowModules',NULL,0,'根据一级模块的code查询出所有的二级模块');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/modules/getByIdModules.do','com.xxy.om.common.controller.ModulesCtrl','getByIdModules',NULL,0,'点击编辑通过Id查询对应的模块信息');
+
+2018.11.20
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/modules/getAllModulesByPage.do','com.xxy.om.common.controller.ModulesCtrl','getAllModulesByPage',NULL,0,'分页查询所有模块');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/modules/updateParentMod.do','com.xxy.om.common.controller.ModulesCtrl','updateParentMod',NULL,0,'修改二级模块的上级编码');
+
+
+涉及到的上一层调用类，需要调整的基类方法更改
+@Autowired
+private BaseCommonService baseCommonService;
+
+//更改为调用公共服务接口 2018.11.22 葛云龙
+Modules tmpMod = baseCommonService.getEntity(mod.getModId(), CommonHandleUtil.MODULES_CLASS_NAME,Modules.class);
+
+
+AuthSourceFactory（无）
+MainFrameAction（无）
+ModulesAction
+ModulesApi（无）
+ModulesServiceImpl
+ModulesServiceImplTest（无）
+RoleAction（无）
+SysRoleServiceImpl（无）
+UserAccess（无）

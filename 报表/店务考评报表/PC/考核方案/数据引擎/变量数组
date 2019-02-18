@@ -1,0 +1,19 @@
+examine_status
+and TBL.examine_status like '%@examine_status%'
+examine_status
+
+examine_name
+and TBL.examine_name like '%@examine_name%'
+examine_name
+
+grade_user
+and TBL.grade_user like '%@grade_user%'
+grade_user
+
+shop_code
+and TBL.shop_code like '%@shop_code%'
+shop_code
+
+shop_name
+and TBL.shop_name like '%@shop_name%'
+shop_name

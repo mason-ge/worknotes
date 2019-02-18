@@ -1,0 +1,7 @@
+widget_month
+js文件：
+http://echarts.baidu.com/dist/echarts.min.js
+初始化：
+widget_month_init
+渲染：
+widget_month_render

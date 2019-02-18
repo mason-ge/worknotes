@@ -1,0 +1,104 @@
+课程
+超导为 ICourseService common为 GameCourseCtrl
+queryCourse----无
+queryCourse2----queryCourse2
+checkCourse----checkCourse
+findQuestionsByCourseId----无
+checkGameCourse----checkGameCourse
+findCIdByTypeId----findCIdByTypeId
+queryCourseToCheck----无(超导后台实体是视图，多表关联)
+queryCourseNew----无
+findReadableCourseListByUserId----无
+findReadableCourseListByUserIdNewTask----无
+findClearingCouresListByUserId----无
+findClearingCouresCountByUserId----无
+queryJobPromotionNotInCourse----无
+findClearingCouresListByUserIdNewTask----无
+getCourserInformToUserManagerTask----getCourserInformToUserManagerTask
+queryLikeCourse----queryLikeCourse
+getCourseToMyFavorite----getCourseToMyFavorite
+loadCourse----loadCourse
+getCourseTag----getCourseTagByAppId
+deleteGameCourseTag----deleteGameCourseTag
+getGameCourseTag----getGameCourseTag
+queryCourseRelQuestionIsNull----无
+findByKeyWord----无
+getCourseReplyInfo----无
+getCourseReplyCount----无
+delCourseReply----无
+
+//改用接口调用2018.11.7 葛云龙
+gameCourseCommonService
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/gameCourse/checkGameCourse.do','com.xxy.om.common.controller.GameCourseCtrl','checkGameCourse',NULL,0,'选课时检查课程是否存在');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/gameCourse/queryLikeCourse.do','com.xxy.om.common.controller.GameCourseCtrl','queryLikeCourse',NULL,0,'根据条件查询课程');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/gameCourse/getCourseTagByAppid.do','com.xxy.om.common.controller.GameCourseCtrl','getCourseTagByAppid',NULL,0,'获取所有课程标签');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/gameCourse/deleteGameCourseTag.do','com.xxy.om.common.controller.GameCourseCtrl','deleteGameCourseTag',NULL,0,'删除gameCourseTag');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/gameCourse/insertGameCourseTag.do','com.xxy.om.common.controller.GameCourseCtrl','insertGameCourseTag',NULL,0,'插入新的gameCoursetag');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/gameCourse/getGameCourseTag.do','com.xxy.om.common.controller.GameCourseCtrl','getGameCourseTag',NULL,0,'选择gameCourseTag');
+
+
+2018.11.16
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/gameCourse/queryCourse2.do','com.xxy.om.common.controller.GameCourseCtrl','queryCourse2',NULL,0,'超导新界面首页主推>>添加课程获取课程列表');
+
+2018.11.19
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/gameCourse/checkCourse.do','com.xxy.om.common.controller.GameCourseCtrl','checkCourse',NULL,0,'检测数据库是否存在同样的名字');
+
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/gameCourse/findCIdByTypeId.do','com.xxy.om.common.controller.GameCourseCtrl','findCIdByTypeId',NULL,0,'选课时根据课程类型id查询该类型下的所有课程id集合');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/gameCourse/getCourserInformToUserManagerTask.do','com.xxy.om.common.controller.GameCourseCtrl','getCourserInformToUserManagerTask',NULL,0,'获取课程信息，包含创建人(创建人需从超导后台取)');
+
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/gameCourse/getCourseToMyFavorite.do','com.xxy.om.common.controller.GameCourseCtrl','getCourseToMyFavorite',NULL,0,'获取单列课程//我的收藏');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/gameCourse/loadCourse.do','com.xxy.om.common.controller.GameCourseCtrl','loadCourse',NULL,0,'获取课程');
+
+
+涉及到的上一层调用类，需要调整的基类方法更改
+
+@Autowired
+private BaseCommonService baseCommonService;
+
+//更改为调用公共服务接口 2018.11.22 葛云龙
+GameCourse gc = baseCommonService.getEntity(id, CommonHandleUtil.GAME_COURSE_CLASS_NAME,GameCourse.class);
+
+AppInfoAction
+AppMainInformationAction
+AppMainInformationAPI
+CourseAction
+CourseTypeAction（无）
+EmbaBookAction
+GameFavoriteAPI
+GameTaskAPI（无）
+GlobalSearchApi（无）
+GroupPahtAPI（无）
+LearningAPI
+LogCollectionVideoAPI
+NewTaskAction
+NewTaskAPI
+NewTaskUserDetailServiceImpl （无）
+pushAPI
+RuleTaskUserDetailTmpServiceImpl（无）
+ShareTaskAPI
+ShopGameAPI
+ShopGuideRef（无）
+TrBbsActivityShareServiceImpl
+UserOpenAPI（无）

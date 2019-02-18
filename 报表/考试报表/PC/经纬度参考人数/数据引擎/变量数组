@@ -1,0 +1,29 @@
+user_name
+and su.name like '%@user_name%'
+
+exam_species
+and e.exam_species like '%@exam_species%'
+
+exam_title
+and e.exam_title like '%@exam_title%'
+
+start_time_to
+and e.start_time <= '@start_time_to'
+
+create_time_from
+and e.create_time >= '@create_time_from'
+
+login_name
+and su.login_name like '%@login_name%'
+
+shop_name
+and su.shop_name like '%@shop_name%'
+
+start_time_from
+and e.start_time >= '@start_time_from'
+
+create_time_to
+and e.create_time <= '@create_time_to'
+
+user_post
+and su.user_post like '%@user_post%'

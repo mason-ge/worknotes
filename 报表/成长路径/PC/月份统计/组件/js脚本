@@ -1,0 +1,271 @@
+<script>
+	//初始化方法
+	function widget_month_init(){
+	//获取元素组件
+	var myChart = echarts.init(document.getElementById('widget_month'));
+	 var option = {
+	    "title": {
+	        "text": "月份统计",
+
+	        textStyle: {
+	            color: 'black',
+	        },
+	        subtextStyle: {
+	            color: 'black',
+	            fontSize: '16',
+
+	        },
+	    },
+	    "tooltip": {
+	        "trigger": "axis",
+	        "axisPointer": {
+	            "type": "shadow",
+	            textStyle: {
+	                color: "#fff"
+	            }
+
+	        },
+	    },
+	    "grid": {
+	        "borderWidth": 0,
+	        "top": 110,
+	        "bottom": 95,
+	        textStyle: {
+	            color: "#fff"
+	        }
+	    },
+	    "legend": {
+	        x: '4%',
+	        top: '8%',
+	        textStyle: {
+	            color: '#90979c',
+	        },
+	        "data": ['参与率', '通过率']
+	    },
+	     
+
+	    "calculable": true,
+	    "xAxis": [{
+	        "type": "category",
+	        "axisLine": {
+	            lineStyle: {
+	                color: 'black'
+	            }
+	        },
+	        "splitLine": {
+	            "show": false
+	        },
+	        "axisTick": {
+	            "show": false
+	        },
+	        "splitArea": {
+	            "show": false
+	        },
+	        "axisLabel": {
+	            "interval": 0,
+	            rotate :40
+
+	        },
+	        "data": [],
+	    }],
+	    "yAxis": [{
+	        "type": "value",
+	        "splitLine": {
+	            "show": false
+	        },
+	        "axisLine": {
+	            lineStyle: {
+	                color: 'black'
+	            }
+	        },
+	        "axisTick": {
+	            "show": false
+	        },
+	        "axisLabel": {
+	            "interval": 0,
+
+	        },
+	        "splitArea": {
+	            "show": false
+	        },
+
+	    }],
+	    "series": [
+	    ]
+	}
+	myChart.setOption(option, true);	
+   }
+   //渲染方法
+   function widget_month_render(data){
+   		//获取元素组件
+		var myChart = echarts.init(document.getElementById('widget_month'));
+		//获取数据
+		//所有年月
+		var allMonth = [];
+		//参与率
+		var scalePeople = [];
+		//通过率
+		var scalePass = [];
+		var eachData;
+		if (data && data.data && data.data.data && data.data.data.rows) {
+			var myData = data.data.data.rows;
+			for(var index in myData){
+				eachData = myData[index];
+				allMonth.push(eachData.checkpoint_month);
+				scalePeople.push(eachData.scale_in_user);
+				scalePass.push(eachData.scale_pass_user);
+			}
+		}
+	   var option = {
+	    "title": {
+	        "text": "月份统计",
+
+	        textStyle: {
+	            color: 'black',
+	        },
+	        subtextStyle: {
+	            color: 'black',
+	            fontSize: '16',
+
+	        },
+	    },
+	    "tooltip": {
+	        "trigger": "axis",
+	        "axisPointer": {
+	            "type": "shadow",
+	            textStyle: {
+	                color: "#fff"
+	            }
+
+	        },
+	    },
+	    "grid": {
+	        "borderWidth": 0,
+	        "top": 110,
+	        "bottom": 95,
+	        textStyle: {
+	            color: "#fff"
+	        }
+	    },
+	    "legend": {
+	        x: '4%',
+	        top: '8%',
+	        textStyle: {
+	            color: '#90979c',
+	        },
+	        "data": ['参与率', '通过率']
+	    },
+	     
+
+	    "calculable": true,
+	    "xAxis": [{
+	        "type": "category",
+	        "axisLine": {
+	            lineStyle: {
+	                color: 'black'
+	            }
+	        },
+	        "splitLine": {
+	            "show": false
+	        },
+	        "axisTick": {
+	            "show": false
+	        },
+	        "splitArea": {
+	            "show": false
+	        },
+	        "axisLabel": {
+	            "interval": 0,
+	            rotate :40
+
+	        },
+	        "data": allMonth,
+	    }],
+	    "yAxis": [{
+	        "type": "value",
+	        "splitLine": {
+	            "show": false
+	        },
+	        "axisLine": {
+	            lineStyle: {
+	                color: 'black'
+	            }
+	        },
+	        "axisTick": {
+	            "show": false
+	        },
+	        "axisLabel": {
+	            "interval": 0,
+
+	        },
+	        "splitArea": {
+	            "show": false
+	        },
+
+	    }],
+
+	    dataZoom: [
+            {
+                type: 'slider',
+                show: true,
+                xAxisIndex: [0],
+                start: 0,
+                end: 100
+            },
+            {
+                type: 'slider',
+                show: true,
+                yAxisIndex: [0],
+                left: '93%',
+                start: 0,
+                end: 100
+            },
+
+        ],
+
+	    "series": [    
+            {
+	            "name": "参与率",
+	            "type": "line",
+	            symbolSize:10,
+	            symbol:'circle',
+	            "itemStyle": {
+	                "normal": {
+	                    "color": "#6E8B3D",
+	                    "barBorderRadius": 0,
+	                    "label": {
+	                        "show": true,
+	                        "position": "top",
+	                        formatter: function(p) {
+	                            return p.value > 0 ? (p.value) : '';
+	                        }
+	                    }
+	                }
+	            },
+	            "data": scalePeople
+	        },
+	          {
+	            "name": "通过率",
+	            "type": "line",
+	            symbolSize:10,
+	            symbol:'circle',
+	            "itemStyle": {
+	                "normal": {
+	                    "color": "#EE7600",
+	                    "barBorderRadius": 0,
+	                    "label": {
+	                        "show": true,
+	                        "position": "top",
+	                        formatter: function(p) {
+	                            return p.value > 0 ? (p.value) : '';
+	                        }
+	                    }
+	                }
+	            },
+	            "data": scalePass
+	        },
+	    ]
+	}
+	myChart.setOption(option, true);	
+   }
+</script>

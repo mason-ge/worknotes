@@ -1,0 +1,58 @@
+系统参数类型
+超导为 ISysParamCateService common为 SysParamCateCtrl
+query----query
+query(String appid)----queryByAppid
+queryNew----queryNew
+queryParamCate----queryParamCate
+select----selectParamNameByCateName
+checkParamCateName----checkParamCateName
+checkParamCateCode----checkParamCateCode
+checkParamCateAndAdd----checkParamCateAndAdd
+queryStoreTypeList----queryStoreTypeList
+
+//改用接口调用2018.11.8 葛云龙
+sysParamCateCommonService
+
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/sysParamCate/query.do','com.xxy.om.common.controller.SysParamCateCtrl','query',NULL,0,'分页条件查询');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/sysParamCate/queryByAppid.do','com.xxy.om.common.controller.SysParamCateCtrl','queryByAppid',NULL,0,'条件查询 * @appid 企业机构的appid');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/sysParamCate/queryNew.do','com.xxy.om.common.controller.SysParamCateCtrl','queryNew',NULL,0,'条件查询 * @appid 企业机构的appid,包括全局');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/sysParamCate/queryParamCate.do','com.xxy.om.common.controller.SysParamCateCtrl','queryParamCate',NULL,0,'条件查询 * @appid  企业机构的appid @ paramCode');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/sysParamCate/selectParamNameByCateName.do','com.xxy.om.common.controller.SysParamCateCtrl','selectParamNameByCateName',NULL,0,'条件查询');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/sysParamCate/checkParamCateName.do','com.xxy.om.common.controller.SysParamCateCtrl','checkParamCateName',NULL,0,'验证名字否存在');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/sysParamCate/checkParamCateCode.do','com.xxy.om.common.controller.SysParamCateCtrl','checkParamCateCode',NULL,0,'验证编码否存在');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/sysParamCate/checkParamCateAndAdd.do','com.xxy.om.common.controller.SysParamCateCtrl','checkParamCateAndAdd',NULL,0,'入住企业时添加初始化参数');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/sysParamCate/queryStoreTypeList.do','com.xxy.om.common.controller.SysParamCateCtrl','queryStoreTypeList',NULL,0,'获取店铺类型');
+
+INSERT INTO md_service_map (code,bean_id,bean_method,app_id,product_level,comments)
+VALUES('/shopguide-common/api/sysParamCate/queryByPage.do','com.xxy.om.common.controller.SysParamCateCtrl','queryByPage',NULL,0,'分页查询所有数据');
+
+涉及到的上一层调用类，需要调整的基类方法更改
+@Autowired
+private BaseCommonService baseCommonService;
+
+
+//更改为调用公共服务接口 2018.11.22 葛云龙
+
+MetaInfo（无）
+OrgAction（无）
+ParamAction（无）
+ParamCateAction
+SysParamCateServiceImpl

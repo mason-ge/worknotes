@@ -1,0 +1,60 @@
+<script>
+	//初始化方法
+	function widget_dashboard_init(){
+	//获取元素组件
+	var myChart = echarts.init(document.getElementById('widget_dashboard'));
+		var option = {
+            title: {
+	            "text": "近7天活跃度",
+	        },
+		    tooltip : {
+		        formatter: "{a} <br/>{b} : {c}%"
+		    },
+		    series: [
+		        {
+		            name: '近7天活跃度',
+		            type: 'gauge',
+		            detail: {formatter:'{value}%'},
+		            data: [{value: 50, name: '近7天活跃度'}]
+		        }
+		    ]
+		};
+	myChart.setOption(option, true);	
+   }
+   //渲染方法
+   function widget_dashboard_render(data){
+   		//获取元素组件
+		var myChart = echarts.init(document.getElementById('widget_dashboard'));
+		//获取数据
+		console.log(data);
+		//比例
+		var scale = 0;
+		//所有用户数
+		var cnt_all_user = 0;
+		//今日登录用户数
+		var cnt_today_user = 0;
+		if (data && data.data && data.data.data && data.data.data.rows) {
+			var myData = data.data.data.rows;
+			cnt_all_user = myData[0].cnt_all_user;
+			cnt_today_user = myData[0].cnt_today_user;
+			scale = ((cnt_today_user/cnt_all_user)*100).toFixed(2);
+		}
+		var option = {
+            title: {
+	            "text": "近7天活跃度",
+	        },
+		    tooltip : {
+		        formatter: "{a} <br/>{b} : {c}%"
+		    },
+		    series: [
+		        {
+		            name: '近7天活跃度',
+		            type: 'gauge',
+		            detail: {formatter:'{value}%'},
+		            data: [{value: scale, name: '近7天活跃度'}]
+		        }
+		    ]
+		};
+	myChart.setOption(option, true);	
+   }
+</script>

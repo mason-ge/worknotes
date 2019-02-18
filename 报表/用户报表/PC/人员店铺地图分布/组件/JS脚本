@@ -1,0 +1,136 @@
+<script>
+    function widget_dt_init() {
+        var widget_dt = echarts.init(document.getElementById('widget_dt'));
+        var option = {
+            title : {
+                text: '全国看板',
+            },
+            geo: {
+                map: 'china',
+                roam: true,
+                label: {
+                    normal: {
+                        show: true,
+                        textStyle: {
+                            color: 'rgba(0,0,0,0.4)'
+                        }
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        borderColor: 'rgba(0, 0, 0, 0.3)'
+                    },
+                    emphasis: {
+                        areaColor: null,
+                        shadowOffsetX: 0,
+                        shadowOffsetY: 0,
+                        shadowBlur: 20,
+                        borderWidth: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            },
+
+            series: [{
+                name: '中国',
+                type: 'scatter',
+                mapType: 'china',
+                coordinateSystem: 'geo',
+                roam: true,
+                label: {
+                    normal: {
+                        show: true,
+                        formatter: function (params) {
+                            return params.name + '：' + params.value
+                        },
+                    }
+                },
+            }]
+        };
+        widget_dt.setOption(option);
+    }
+
+function convertData(data) {
+    var res = [];
+    for (var i = 0; i < data.length; i++) {
+        var name = data[i].shop_name;
+        var value = [data[i].longitude, data[i].latitude, data[i].cnt_people_in];
+        res.push({
+            name: name,
+            value: value
+        });
+    }
+    return res;
+}
+
+function widget_dt_render(data) {
+    var seriesData = [];
+    var myData = [];
+    if (data && data.data && data.data.data && data.data.data.rows) {
+        myData = data.data.data.rows;
+        myData = convertData(myData);
+
+    }
+    var widget_dt = echarts.init(document.getElementById('widget_dt'));
+    var option = {
+        geo: {
+            map: 'china',
+            roam: true,
+            label: {
+                normal: {
+                    show: true,
+                    textStyle: {
+                        color: 'rgba(0,0,0,0.4)'
+                    }
+                }
+            },
+            itemStyle: {
+                normal: {
+                    borderColor: 'rgba(0, 0, 0, 0.3)'
+                },
+                emphasis: {
+                    areaColor: null,
+                    shadowOffsetX: 0,
+                    shadowOffsetY: 0,
+                    shadowBlur: 20,
+                    borderWidth: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        },
+        title: {
+            text: '全国看板',
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: function (params) {
+                var value = params.value.toString();
+                var index = value.lastIndexOf(",");
+                value = value.substring(index + 1, value.length);
+                return params.name + '<br/>' + value + '人';
+            }
+        },
+        series: [{
+            name: '中国',
+            type: 'scatter',
+            mapType: 'china',
+            roam: true,
+            coordinateSystem: 'geo',
+            label: {
+                normal: {
+                    show: false,
+                    formatter: function (params) {
+                        var value = params.value.toString();
+                        var index = value.lastIndexOf(",");
+                        value = value.substring(index + 1, value.length);
+                        return value;
+                    },
+                }
+            },
+            data: myData
+        }]
+    };
+    widget_dt.setOption(option);
+}
+
+</script>

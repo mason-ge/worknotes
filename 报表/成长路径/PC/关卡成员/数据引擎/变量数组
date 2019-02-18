@@ -1,0 +1,11 @@
+userName
+and su.name like '%@userName%'
+userName
+
+checkpoint_name
+and t.checkpoint_name like '%@checkpoint_name%'
+checkpoint_name
+
+post
+and su.user_post like '%@post%'
+post
