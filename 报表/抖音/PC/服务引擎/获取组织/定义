@@ -1,0 +1,6 @@
+获取组织
+http://bms.microc.cn/shopguide/api/bms/auth/queryOrgByPathNew
+GET
+accessToken=@##env_token##@&type=4&isControlAuth=0&p=1&r=999
+application/json;charset=utf-8
+获取组织

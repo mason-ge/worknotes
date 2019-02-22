@@ -1,0 +1,235 @@
+<script>
+	//初始化方法
+	function widget_month_init(){
+	//获取元素组件
+	var myChart = echarts.init(document.getElementById('widget_month'));
+	 var option = {
+	    "title": {
+	        "text": "月份人数统计",
+	    },
+	    "tooltip": {
+	        "trigger": "axis",
+	        "axisPointer": {
+	            "type": "shadow",
+	            textStyle: {
+	                color: "#fff"
+	            }
+
+	        },
+	    },
+	    "grid": {
+	        "borderWidth": 0,
+	        "top": 110,
+	        "bottom": 95,
+	        textStyle: {
+	            color: "#fff"
+	        }
+	    },
+	    "legend": {
+	        x: '4%',
+	        top: '8%',
+	        textStyle: {
+	            color: '#90979c',
+	        },
+	        "data": ['总人数']
+	    },
+	     
+
+	    "calculable": true,
+	    "xAxis": [{
+	        "type": "category",
+	        "axisLine": {
+	            lineStyle: {
+	                color: 'black'
+	            }
+	        },
+	        "splitLine": {
+	            "show": false
+	        },
+	        "axisTick": {
+	            "show": false
+	        },
+	        "splitArea": {
+	            "show": false
+	        },
+	        "axisLabel": {
+	            "interval": 0,
+	            rotate :40
+
+	        },
+	        "data": [],
+	    }],
+	    "yAxis": [{
+	        "type": "value",
+	        "splitLine": {
+	            "show": false
+	        },
+	        "axisLine": {
+	            lineStyle: {
+	                color: 'black'
+	            }
+	        },
+	        "axisTick": {
+	            "show": false
+	        },
+	        "axisLabel": {
+	            "interval": 0,
+
+	        },
+	        "splitArea": {
+	            "show": false
+	        },
+
+	    }],
+	    "series": [
+	    ]
+	}
+	myChart.setOption(option, true);	
+   }
+   //渲染方法
+   function widget_month_render(data){
+   		//获取元素组件
+		var myChart = echarts.init(document.getElementById('widget_month'));
+		//获取数据
+		//所有年月
+		var allUserMonth = [];
+		//每个月总人数
+		var cntAllUser = [];
+
+		var eachData;
+		if (data && data.data && data.data.data && data.data.data.rows) {
+			var myData = data.data.data.rows;
+			for(var index in myData){
+			eachData = myData[index];
+				allUserMonth.push(eachData.all_user_month);
+				cntAllUser.push(eachData.cnt_all_user);
+			}
+		}
+
+	 var option = {
+	    "title": {
+	        "text": "月份人数统计",
+	    },
+	    "tooltip": {
+	        "trigger": "axis",
+	        "axisPointer": {
+	            "type": "shadow",
+	            textStyle: {
+	                color: "#fff"
+	            }
+
+	        },
+	    },
+	    "grid": {
+	        "borderWidth": 0,
+	        "top": 110,
+	        "bottom": 95,
+	        textStyle: {
+	            color: "#fff"
+	        }
+	    },
+	    "legend": {
+	        x: '4%',
+	        top: '8%',
+	        textStyle: {
+	            color: '#90979c',
+	        },
+	        "data": ['总人数']
+	    },
+	     
+
+	    "calculable": true,
+	    "xAxis": [{
+	        "type": "category",
+	        "axisLine": {
+	            lineStyle: {
+	                color: 'black'
+	            }
+	        },
+	        "splitLine": {
+	            "show": false
+	        },
+	        "axisTick": {
+	            "show": false
+	        },
+	        "splitArea": {
+	            "show": false
+	        },
+	        "axisLabel": {
+	            "interval": 0,
+	            rotate :40
+
+	        },
+	        "data": allUserMonth,
+	    }],
+	    "yAxis": [{
+	        "type": "value",
+	        "splitLine": {
+	            "show": false
+	        },
+	        "axisLine": {
+	            lineStyle: {
+	                color: 'black'
+	            }
+	        },
+	        "axisTick": {
+	            "show": false
+	        },
+	        "axisLabel": {
+	            "interval": 0,
+
+	        },
+	        "splitArea": {
+	            "show": false
+	        },
+
+	    }],
+
+	    dataZoom: [
+            {
+                type: 'slider',
+                show: true,
+                xAxisIndex: [0],
+                start: 0,
+                end: 90
+            },
+            {
+                type: 'slider',
+                show: true,
+                yAxisIndex: [0],
+                left: '93%',
+                start: 0,
+                end: 100
+            },
+
+        ],
+
+	    "series": [
+             {
+	            "name": "总人数",
+	            "type": "bar",
+	            "stack": "总量",
+	            "barMaxWidth": 35,
+	            "barGap": "10%",
+	            "itemStyle": {
+	                "normal": {
+	                    "color": "#CD5555",
+	                    "label": {
+	                        "show": true,
+	                        "textStyle": {
+	                            "color": "#fff"
+	                        },
+	                        "position": "insideTop",
+	                        formatter: function(p) {
+	                            return p.value > 0 ? (p.value) : '';
+	                        }
+	                    }
+	                }
+	            },
+	            "data":cntAllUser,
+	        },
+	    ]
+	}
+	myChart.setOption(option, true);	
+   }
+</script>

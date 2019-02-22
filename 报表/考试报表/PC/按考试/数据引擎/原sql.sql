@@ -57,6 +57,11 @@ FROM
 				AND t.app_id = 'csb'
 				AND t.exam_type = '3'
 				AND t.del_flag = '0'
+				and t.exam_id in (
+					select 	es.exam_id from exam_select_user es
+					where es.app_id = '@##org_app_id##@'
+					and es.sys_user_id = '@##org_user_id##@'
+				)
 				ORDER BY
 					t.create_time DESC
 			) TBA

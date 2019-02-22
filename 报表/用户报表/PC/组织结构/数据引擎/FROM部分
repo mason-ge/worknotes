@@ -160,6 +160,7 @@
 		WHERE
 			1 = 1
 		AND t.app_id = '@##org_app_id##@'
+		and t.
 		GROUP BY
 			t.sys_user_id,
 			t.app_id

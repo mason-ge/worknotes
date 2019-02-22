@@ -1,0 +1,13 @@
+create_time_from
+and TBB.all_user_month >=  concat(
+        YEAR ('@create_time_from'),
+        LPAD(MONTH('@create_time_from'), 2, 0)
+    )
+create_time_from
+
+create_time_to
+and TBB.all_user_month <=  concat(
+       YEAR ('@create_time_to'),
+        LPAD(MONTH('@create_time_to'), 2, 0)
+    )
+create_time_to

@@ -1,0 +1,28 @@
+user_name
+and e.lecturer_name like '%@user_name%'
+user_name
+
+content_title
+and t.content_title like '%@content_title%'
+content_title
+
+tag_name
+AND t.content_id in( SELECT DISTINCT s.content_id FROM lecture_tags_detail s left join lecture_tags gs on (s.tag_id = gs.tag_id
+				AND s.app_id = gs.app_id) WHERE gs.tag_name in (@tag_name))
+tag_name
+
+create_time_from
+and t.create_time >= '@create_time_from'
+create_time_from
+
+create_time_to
+and t.create_time <= '@create_time_to'
+create_time_to
+ 
+status
+and TBL.status = '@status'
+status
+
+belong_org
+and e.belong_org_name like '%@belong_org%'
+belong_org

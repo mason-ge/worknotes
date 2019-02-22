@@ -1,0 +1,11 @@
+user_name
+and t.lecturer_name like '%@user_name%'
+user_name
+
+status
+and TBL.status = '@status'
+status
+
+belong_org
+and t.belong_org_name like '%@belong_org%'
+belong_org

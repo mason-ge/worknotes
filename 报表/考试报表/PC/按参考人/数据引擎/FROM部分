@@ -53,7 +53,8 @@ FROM
 		AND t.del_flag = '0'
 		AND e.exam_type = '3'
 		AND e.del_flag = '0'
-		AND T.app_id = '@##org_app_id##@'              
+		AND T.app_id = '@##org_app_id##@'
+        and t.sys_user_id in (@##auth_user_ids##@)
         {#ph#exam_species#ph#}
         {#ph#exam_title#ph#}
         {#ph#start_time_from#ph#}

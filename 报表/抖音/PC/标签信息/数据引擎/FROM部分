@@ -1,0 +1,5 @@
+lecture_tags t
+WHERE
+	t.app_id = '@##org_app_id##@'
+AND t.del_flag = 0
+AND t.tag_type = '1'

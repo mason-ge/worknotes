@@ -14,3 +14,71 @@ poster="http://www.laikabase.de/cp_view/images/userfiles/slideshows/19_thumb_Shi
 </video>';
 
 <source src="'+datas.info+'" type="video/webm"/>你浏览器不支持 video 功能，点击这里下载视频： <a href="'+datas.info+'">下载视频</a>
+
+
+cf733950dc58edc6970dd3d72484d071_csb_web
+
+
+f73bebe099375209ed0d70181b8331b3_csb_web
+
+cd1ad9f62f99d0a681a38e4505dcc611_csb_web
+
+      
+				and t.exam_id in (
+					select 	es.exam_id from exam_select_user es 
+                    left join sys_user su on (su.sys_user_id = '@##org_user_id##@')
+                    WHERE if(su.user_cate in ('8','9'),1=1,es.sys_user_id = '@##org_user_id##@')
+					and  es.app_id = '@##org_app_id##@'
+				)
+
+
+
+					/**
+			 * 2019.2.21 葛云龙添加 如果本次修改了图片，如果该文章被已发布的首页主推引用了，需要清除首页主推的图片缓存
+			 */
+			if(changePic){
+				boolean flagHas = false;
+				//查询该文章id对应的首页主推信息
+				List<AppMainInformation> listMain = appMainInformationService.queryByAppIdRelIdTypeId(tmpObj.getAppId(), tmpObj.getArticleId(), "2");
+				if (listMain != null && !listMain.isEmpty()) {
+					for (AppMainInformation a : listMain) {
+						if ("1".equals(a.getStatus())) {
+							flagHas = true;
+							break;
+						}
+					}
+				}
+				if (flagHas) {
+					try {
+						String appMainInformationKey = "appMainInformationKey_" + tmpObj.getAppId();
+						cacheService.delete(appMainInformationKey);
+					} catch (Exception e) {
+						e.printStackTrace();
+						log.error("删除主图缓存错误");
+					}
+				}
+			}
+
+
+
+						existPic = tmpObj.getPic();
+			thisTimePic = QiNiuServiceImpl.getImgUrl(article.getPic());
+			if(!existPic.equals(thisTimePic)){
+				changePic = true;
+			}
+
+
+
+					//本次修改是否有修改标题图片
+		boolean changePic = false;
+		String thisTimePic,existPic;
+
+
+		http://http://localhost:8030//open/qiniu/securityChains
+
+
+		获取组织
+
+获取组织
+http://bms.microc.cn/shopguide/api/bms/auth/queryOrgByPathNew
+accessToken=@##env_token##@&type=4&isControlAuth=0&p=1&r=999
