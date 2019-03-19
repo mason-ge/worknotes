@@ -1,0 +1,10 @@
+Linux服务器
+172.16.0.221
+22端口
+root
+root_new
+
+ps aux|grep java
+pkill -f .*dbMonitor-uber.*.jar
+java -jar /usr/local/project/dbMonitor/dbMonitor-uber*.jar 8083 </dev/null >/usr/local/project/dbMonitor/dbMonitor.log 2>&1 &
+tail -f dbMonitor.log -n  200

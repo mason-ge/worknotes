@@ -4,42 +4,32 @@ FROM
 	(
 		SELECT
 			TBB.all_user_month,
-			(
-				SELECT
-					count(t.lecturer_user_id)
-				FROM
-					lecture_lecturer t
-				WHERE
-					t.app_id = 'csb'
-				AND t.regedit_date IS NOT NULL
-				AND concat(
-					YEAR (t.regedit_date),
-					LPAD(MONTH(t.regedit_date), 2, 0)
-				) <= TBB.all_user_month
-			) AS cnt_all_user
+			TBB.cnt_all_user,
+			TBB.cnt_all_content
 		FROM
 			(
 				SELECT
 					concat(
-						YEAR (t.regedit_date),
-						LPAD(MONTH(t.regedit_date), 2, 0)
+						YEAR (t.create_time),
+						LPAD(MONTH(t.create_time), 2, 0)
 					) AS all_user_month,
-					count(t.lecturer_user_id) AS cnt_all_user
+					count(DISTINCT t.create_user) AS cnt_all_user,
+					count(t.content_id) as cnt_all_content
 				FROM
-					lecture_lecturer t
+					lecture_content t
 				WHERE
 					t.app_id = 'csb'
-				AND t.regedit_date IS NOT NULL
+				AND t.create_time IS NOT NULL
 				GROUP BY
 					concat(
-						YEAR (t.regedit_date),
-						LPAD(MONTH(t.regedit_date), 2, 0)
+						YEAR (t.create_time),
+						LPAD(MONTH(t.create_time), 2, 0)
 					)
 				ORDER BY
 					CAST(
 						concat(
-							YEAR (t.regedit_date),
-							LPAD(MONTH(t.regedit_date), 2, 0)
+							YEAR (t.create_time),
+							LPAD(MONTH(t.create_time), 2, 0)
 						) AS DECIMAL
 					)
 			) TBB

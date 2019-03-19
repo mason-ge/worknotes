@@ -33,7 +33,7 @@ cd1ad9f62f99d0a681a38e4505dcc611_csb_web
 
 
 
-					/**
+			/**
 			 * 2019.2.21 葛云龙添加 如果本次修改了图片，如果该文章被已发布的首页主推引用了，需要清除首页主推的图片缓存
 			 */
 			if(changePic){
@@ -82,3 +82,101 @@ cd1ad9f62f99d0a681a38e4505dcc611_csb_web
 获取组织
 http://bms.microc.cn/shopguide/api/bms/auth/queryOrgByPathNew
 accessToken=@##env_token##@&type=4&isControlAuth=0&p=1&r=999
+
+
+抖音报表
+PC:
+http://bms.xxynet.com/bi-report-dy-dev/bi/report/lm/report.html?accessToken=$access_token&reportId=0ac87b70-7f11-4d5a-b338-9d7f61c4b2d4
+手机:
+http://bms.xxynet.com/bi-report-dy-dev/bi/report/xm/report.html?accessToken=$token&reportId=91317b59-050a-4e35-91f6-dc11d49c3c57
+
+
+hhljy010
+8f9e359578a1044d95be0a913920102d_hhljy_web
+
+021a799908ecde304a8f233f4c775250_hhljy_web
+
+113a42ee50e6f46c77c3947c495df5ff_hhljy_web
+
+7c6783b1136cebfdf391ae5f68e3fd71_hhljy_web
+
+c137331652b897e8ea14d243e2243565_hhljy_web
+
+c513e99f01573f3aca5505ea5b38d082_hhljy_web
+
+
+
+1
+检查任务是否完成，防止用户刷金币
+2
+通用的能量结算方法
+3
+保存答题明细
+4
+更新完成标记
+5
+领取奖励方法
+6
+添加每日任务完成次数
+7
+添加日志
+8
+任务规则系统考试任务提交
+
+
+
+            $.messager.confirm('提示', '图片缩放会放弃所有编辑，是否继续?', function(r){
+                if(r){
+                    paintHis = [];
+                    $('.canvasNote').remove();
+                    drawImageToCanvas(totalAngle);
+                    edited = false;
+                }
+            });
+
+
+			1806780573!4
+
+
+抖音报表(正式环境)
+PC:
+http://bms.xxynet.com/bi-report-dy/bi/report/lm/report.html?accessToken=$access_token&reportId=0ac87b70-7f11-4d5a-b338-9d7f61c4b2d4
+手机:
+http://bms.xxynet.com/bi-report-dy/bi/report/xm/report.html?accessToken=$token&reportId=91317b59-050a-4e35-91f6-dc11d49c3c57
+
+
+2019全员培训线上测试
+
+
+http://supershoper.xxynet.com/315116303xxy1551753818865?imageView/1/w/223/h/218/q/10/format/JPG
+
+
+0 = "csb"
+1 = {Long@9860} 1806779185
+2 = {Long@9862} 17110375
+
+
+{#ph#accessToken#ph#}p=1&r=1000&disabled=0{#ph#userName#ph#}{#ph#post#ph#}{#ph#teacher#ph#}{#ph#checkpoint_name#ph#}{#ph#pathName#ph#}
+
+
+
+314697040
+
+
+accessToken=@##env_token##@&p=1&r=1000&disabled=0{#ph#ckFlag#ph#}{#ph#userName#ph#}{#ph#post#ph#}{#ph#teacher#ph#}{#ph#checkpoint_name#ph#}{#ph#pathName#ph#}
+
+
+http://139.129.204.152:801/om-web/growup/path/ck/detail/list.do?accessToken=@##env_token##@
+
+
+{#ph#accessToken#ph#}{#ph#userName#ph#}{#ph#pathName#ph#}{#ph#checkpoint_name#ph#}{#ph#post#ph#}&p=1&r=1000{#ph#teacher#ph#}{#ph#ckFlag#ph#}&disabled=0
+accessToken=@##env_token##@{#ph#userName#ph#}{#ph#pathName#ph#}{#ph#checkpoint_name#ph#}{#ph#post#ph#}{#ph#teacher#ph#}{#ph#ckFlag#ph#}
+
+
+accessToken=@##env_token##@&p=1&r=1000&disabled=0{#ph#userName#ph#}{#ph#pathName#ph#}{#ph#checkpoint_name#ph#}{#ph#post#ph#}{#ph#teacher#ph#}{#ph#ckFlag#ph#}
+
+p=1&r=1000&disabled=0{#ph#userName#ph#}&accessToken=@##env_token##@
+
+&p=1&r=1000&disabled=0{#ph#userName#ph#}
+
+http://139.129.204.152:801/om-web/growup/path/ck/detail/list.do?accessToken=@##env_token##@

@@ -5,7 +5,7 @@
 	var myChart = echarts.init(document.getElementById('widget_month'));
 	 var option = {
 	    "title": {
-	        "text": "月份人数统计",
+	        "text": "月份统计",
 	    },
 	    "tooltip": {
 	        "trigger": "axis",
@@ -33,8 +33,6 @@
 	        },
 	        "data": ['总人数']
 	    },
-	     
-
 	    "calculable": true,
 	    "xAxis": [{
 	        "type": "category",
@@ -93,22 +91,25 @@
 		//获取数据
 		//所有年月
 		var allUserMonth = [];
-		//每个月总人数
+		//每个月发视频人数
 		var cntAllUser = [];
+		//每个月发的视频数量
+		var cntAllContent = [];
 
 		var eachData;
 		if (data && data.data && data.data.data && data.data.data.rows) {
 			var myData = data.data.data.rows;
 			for(var index in myData){
-			eachData = myData[index];
+				eachData = myData[index];
 				allUserMonth.push(eachData.all_user_month);
 				cntAllUser.push(eachData.cnt_all_user);
+				cntAllContent.push(eachData.cnt_all_content);
 			}
 		}
 
-	 var option = {
-	    "title": {
-	        "text": "月份人数统计",
+	 	var option = {
+	    	"title": {
+	        	"text": "月份统计",
 	    },
 	    "tooltip": {
 	        "trigger": "axis",
@@ -134,7 +135,7 @@
 	        textStyle: {
 	            color: '#90979c',
 	        },
-	        "data": ['总人数']
+	        "data": ['发视频人数','视频数']
 	    },
 	     
 
@@ -205,8 +206,9 @@
         ],
 
 	    "series": [
+
              {
-	            "name": "总人数",
+	            "name": "发视频人数",
 	            "type": "bar",
 	            "stack": "总量",
 	            "barMaxWidth": 35,
@@ -227,6 +229,29 @@
 	                }
 	            },
 	            "data":cntAllUser,
+	        },
+			{
+	            "name": "视频数",
+	            "type": "bar",
+	            "stack": "总量",
+	            "barMaxWidth": 35,
+	            "barGap": "10%",
+	            "itemStyle": {
+	                "normal": {
+	                    "color": "#458B74",
+	                    "label": {
+	                        "show": true,
+	                        "textStyle": {
+	                            "color": "#fff"
+	                        },
+	                        "position": "insideTop",
+	                        formatter: function(p) {
+	                            return p.value > 0 ? (p.value) : '';
+	                        }
+	                    }
+	                }
+	            },
+	            "data":cntAllContent,
 	        },
 	    ]
 	}

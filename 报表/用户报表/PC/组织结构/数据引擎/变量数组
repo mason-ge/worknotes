@@ -29,3 +29,5 @@ shop_name
 create_time_end
 and TBL.create_time <= '@create_time_end'
 create_time_end
+
+and (TBL.assess_user_name like '%@teacher_name%' or TBL.teaching_user_name like '%@teacher_name%' or TBL.exercise_assess_name1 like '%@teacher_name%' or TBL.exercise_assess_name2 like '%@teacher_name%')
