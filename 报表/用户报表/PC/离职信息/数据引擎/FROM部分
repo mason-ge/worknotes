@@ -17,6 +17,7 @@
 				WHERE
 					1 = 1
 				AND t.app_id = '@##org_app_id##@'
+{#ph#user_post#ph#}
 				ORDER BY
 					t.create_time DESC
 			) TBT

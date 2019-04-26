@@ -72,6 +72,7 @@ FROM
 		WHERE
 			1 = 1
 		AND t.app_id = '@##org_app_id##@'
+                {#ph#user_post#ph#}
 		AND t.exam_type = '3'
 		AND t.del_flag = '0'
 				and t.exam_id in (

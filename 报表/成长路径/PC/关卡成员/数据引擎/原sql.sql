@@ -8,22 +8,7 @@ FROM
 			su.login_name,
 			su.`name` AS user_name,
 			su.shop_name,
-			(
-				CASE
-				WHEN su.user_post = '0' THEN
-					'总部'
-				WHEN su.user_post = '1' THEN
-					'区域经理'
-				WHEN su.user_post = '2' THEN
-					'导购'
-				WHEN su.user_post = '3' THEN
-					'督导'
-				WHEN su.user_post = '4' THEN
-					'店长'
-				ELSE
-					''
-				END
-			) AS user_post
+			su.user_post AS user_post
 		FROM
 			(
 				SELECT DISTINCT

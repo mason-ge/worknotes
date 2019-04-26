@@ -160,7 +160,8 @@
 		WHERE
 			1 = 1
 		AND t.app_id = '@##org_app_id##@'
-		and t.
+		AND t.sys_user_id IN (@##auth_user_ids##@)
+ {#ph#user_post#ph#}
 		GROUP BY
 			t.sys_user_id,
 			t.app_id

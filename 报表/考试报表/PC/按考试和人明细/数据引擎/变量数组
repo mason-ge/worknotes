@@ -15,7 +15,7 @@ and t.start_time <= '@start_time_to'
 start_time_to
 
 user_post
-and TBL.user_post like '%@user_post%'
+and u.user_post ='@user_post'
 user_post
 
 exam_species

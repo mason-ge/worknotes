@@ -133,9 +133,9 @@ FROM
 					LPAD(MONTH(t.create_time), 2, 0)
 				) AS pass_month,
 				count(
-					CASE
+					DISTINCT CASE
 					WHEN s.exam_pass_type = '9' THEN
-						s.sid
+						s.sys_user_id
 					ELSE
 						NULL
 					END

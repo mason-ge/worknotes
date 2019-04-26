@@ -1,0 +1,7 @@
+(
+select '0,1' as code,'未开始' as name from dual
+UNION ALL
+select '2' as code,'进行中' as name from dual
+UNION ALL
+select '3' as code,'已通过' as name from dual
+)TBL

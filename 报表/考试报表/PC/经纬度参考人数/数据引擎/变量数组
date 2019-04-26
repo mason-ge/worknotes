@@ -26,4 +26,4 @@ create_time_to
 and e.create_time <= '@create_time_to'
 
 user_post
-and su.user_post like '%@user_post%'
+and su.user_post ='@user_post'

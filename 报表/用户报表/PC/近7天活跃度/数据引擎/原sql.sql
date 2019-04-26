@@ -14,9 +14,13 @@ FROM
 				AND s.app_id = 'csb'
 			) AS cnt_all_user
 		FROM
-			user_login_log t
+			user_login_log t FORCE INDEX (idx_op_time)
 		WHERE
-			DATE(t.operation_time) <= DATE(CURDATE())
-		AND DATE(t.operation_time) >= DATE_SUB(CURDATE(), INTERVAL 6 DAY)
+			1 = 1
 		AND t.app_id = 'csb'
+		AND t.operation_time BETWEEN date_format(
+			DATE_SUB(now(), INTERVAL 6 DAY),
+			'%Y-%m-%d 00:00:00'
+		)
+		AND date_format(now(), '%Y-%m-%d 00:00:00')
 	) TBL

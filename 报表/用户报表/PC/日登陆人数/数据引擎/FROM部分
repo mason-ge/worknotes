@@ -1,17 +1,10 @@
-(
-	SELECT
-		count(DISTINCT t.user_id) AS cnt_today_log,
-		(
-			SELECT
-				count(DISTINCT t1.sys_user_id)
-			FROM
-				sys_user t1
-			WHERE
-				t1.app_id = '@##org_app_id##@'
-		) AS cnt_all_log
-	FROM
-		user_login_log t
-	WHERE
-		DATE(t.operation_time) = DATE(SYSDATE())
-	AND t.app_id = '@##org_app_id##@'
-) TBL
+(SELECT
+	count(DISTINCT t.user_id) as cnt_today_log
+FROM
+	user_login_log t
+WHERE
+	1 = 1
+AND t.app_id = '@##org_app_id##@'
+AND T.operation_time >= date_format(now(), '%Y-%m-%d 00:00:00')
+AND T.operation_time <= date_format(now(), '%Y-%m-%d 23:00:00')
+)TBL

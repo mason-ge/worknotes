@@ -5,22 +5,7 @@
 			su.login_name,
 			su.`name` AS user_name,
 			su.shop_name,
-			(
-				CASE
-				WHEN su.user_post = '0' THEN
-					'总部'
-				WHEN su.user_post = '1' THEN
-					'区域经理'
-				WHEN su.user_post = '2' THEN
-					'导购'
-				WHEN su.user_post = '3' THEN
-					'督导'
-				WHEN su.user_post = '4' THEN
-					'店长'
-				ELSE
-					''
-				END
-			) AS user_post
+			su.user_post AS user_post
 		FROM
 			(
 				SELECT DISTINCT
@@ -36,7 +21,7 @@
 				)
 				WHERE
 					cp.app_id = '@##org_app_id##@'
-				    AND cp.delete_flag = '0'
+				AND cp.delete_flag = '0'
 			) t
 		LEFT JOIN growup_checkpoint_detail gd ON (
 			t.checkpoint_id = gd.checkpoint_id
@@ -48,7 +33,7 @@
 		)
 		WHERE
 			1 = 1
-        {#ph#userName#ph#}
+                {#ph#userName#ph#}
 		{#ph#post#ph#}
 		{#ph#checkpoint_name#ph#}
 		GROUP BY

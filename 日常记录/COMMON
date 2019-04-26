@@ -180,3 +180,361 @@ p=1&r=1000&disabled=0{#ph#userName#ph#}&accessToken=@##env_token##@
 &p=1&r=1000&disabled=0{#ph#userName#ph#}
 
 http://139.129.204.152:801/om-web/growup/path/ck/detail/list.do?accessToken=@##env_token##@
+
+
+auth_operation_top
+
+auth_operation_cancel_top
+
+auth_operation_home_top
+
+auth_operation_cancel_home_top
+
+
+
+
+--------geyunlong start---------
+-- 文章表增加字段
+alter table articles add column home_top_flag int(11) DEFAULT 0 COMMENT '首页置顶标识(1置顶,0非置顶 一个企业下最多5篇文章首页置顶)';
+-- 权限资源表增加数据(用于文章管理)
+INSERT INTO auth_resource_operation (id,resource_type_id,operation_code,operation_name,app_id,delete_flag) VALUES
+(31,3,'top','置顶',NULL,0)
+,(32,3,'cancelTop','取消置顶',NULL,0)
+,(33,3,'homeTop','首页置顶',NULL,0)
+,(34,3,'cancelHomeTop','取消首页置顶',NULL,0);
+--------geyunlong end---------
+
+
+@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+
+
+git config --global user.name "葛云龙"
+git config --global user.email "929595937@qq.com"
+git init
+git remote add origin http://120.27.45.57:18080/geyl/unify-operate.git
+git add .
+git commit -m "程序源代码"
+git push -u origin master
+
+
+
+remind_detail_id
+remind_id
+plan_id
+remind_text
+status
+remind_time
+
+{
+"planId": "",计划id 新建为空 <string>
+"planName": "测试计划名3",计划名称 必输 <string>
+"planCateId": "1",计划类别id 必输 <string>
+"planExplain": "测试明细3",计划说明 <string>
+"startTime": "2019-04-03 09:00:00",计划开始时间 必输 <string>
+"endTime": "2019-04-04 09:00:00",计划结束时间 必输 <string>
+"planRemindFlag": "1",是否开启计划提醒 必输 1是0否 <string>
+"planBeforeDays": "1",计划提醒提前开始时间天数 <string>
+"planBeforeTime": "9:00",计划提醒提前的时间(时分) <string>
+"planRemindUser": "",计划提醒人 默认创建人 <string>
+"taskRemindFlag": "1",是否开启任务提醒 必输 1是0否 <string>
+"taskBeforeDays": "2",任务提醒提前开始时间天数 <string>
+"taskBeforeTime": "10:00",任务提醒提前的时间(时分) <string>
+"taskRemindUser": ""任务提醒人 默认创建人 <string>
+}
+
+{
+"planId": "1",计划id 必输 <string>
+"nodeName": "测试环节名3",环节名称 必输 <string>
+"nodeExplain": "测试环节说明3",环节详情 <string>
+"nodeType": "1",关联任务类型(1文章2考试3活动4互动社区) 必输 <string>
+"sort": "1"排序 <string>
+}
+
+{
+"nodeId": "2",环节id 必输 <string>
+"nodeName": "测试环节名3-修改",(不传保持原值) <string>
+"nodeExplain": "测试环节说明3-修改",(不传保持原值) <string>
+"nodeType": "1",(不传保持原值) <string>
+"sort": "1"(不传保持原值) <string>
+}
+
+"data": {#注释<object>绑定对象
+	"nodeId": 2,节点id <number>
+	"planId": 1,计划id <number>
+	"nodeName": "测试环节名2-修改",环节名称 <string>
+	"nodeExplain": "测试环节说明1",环节说明 <string>
+	"nodeType": "1",关联任务id <string>
+	"nodeTypeName": "文章"关联任务名称 <string>
+},
+V1.4
+
+新增：1.2.4，1.4.1，1.4.2 
+
+调整： 1.2.3修改计划，调整必输项
+
+
+
+"data": [#注释<array>绑定对象
+	{
+		"taskId": 1,任务id <number>
+		"nodeId": 2,环节id <number>
+		"planId": 1,计划id <number>
+		"taskName": "测试任务",任务名称 <string>
+		"startTime": null,开始时间 <string>
+		"endTime": null,结束时间 <string>
+		"sort": 1,排序 <number>
+		"taskStatus": "1",任务状态id <string>
+		"taskStatusName": "待完善",任务状态名称 <string>
+		"bussinessId": null关联超导业务id <string>
+	}
+],
+
+
+{
+	"planId": "",
+	"planName": "测试计划名5",
+	"planCateId": "1",
+	"planExplain": "测试明说明5",
+	"startTime": "2019-04-03 09:00:00",
+	"endTime": "2019-04-04 09:00:00",
+	"planRemindFlag": "1",
+	"planBeforeDays": "1",
+	"planBeforeTime": "9:00",
+	"planRemindUser": "",
+	"taskRemindFlag": "1",
+	"taskBeforeDays": "2",
+	"taskBeforeTime": "10:00",
+	"taskRemindUser": ""
+}
+
+{
+	"planName": "1",
+	"planExplain": "1",
+	"planRemindFlag": true,
+	"planBeforeDays": "22",
+	"taskRemindFlag": true,
+	"taskBeforeDays": "33",
+	"planCateId": 1,
+	"planBeforeTime": "22:22",
+	"taskBeforeTime": "11:11",
+	"startTime": "2019-04-08 00:00:00",
+	"endTime": "2019-04-12 00:00:00"
+}
+
+
+[
+	{
+	"taskName": "测试任务4",任务名称 必输 <string>
+	"startTime": "2019-04-04 00:00:00",开始时间 必输 <string>
+	"endTime": "2019-04-06 00:00:00",结束时间 必输 <string>
+	"sort": "1",排序 <string>
+	"taskStatus": 1,任务状态(1未发布4待完善) 必输 <number>
+	"bussinessId": ""关联业务id <string>
+	}
+]
+
+
+
+[{"taskName":"1","startTime":"2019-04-10 16:10","endTime":"2029-04-10 16:10","sort":0,"taskStatus":"1","bussinessId":3812687}]
+
+
+reportView
+
+			DBObject up_query1 = new BasicDBObject("project_id",pid);
+			up_query1.put("status", ConstantBean.PROJECT_STATUS_FINISHED);
+
+			DBCursor up_cursor = user_projects.find(up_query1);
+
+			http://localhost:8080/shopguide/reportquestionnairedownloadXLSNew2.jhtml?pid=5ca18d383497510620d13df6
+
+			http://localhost:8070/reportquestionnairedownloadXLSNew3.jhtml?pid=5cb6c0ae34975112808a7266
+
+5cb6c0ae34975112808a7266
+			2450187
+
+
+			5ca18d383497510620d13df6
+
+
+			liusijin@chaojidaogou.com
+
+			zhoubin@chaojidaogou.com
+			maxin@chaojidaogou.com
+
+
+			rm-m5e8wi2f72nl05tp1.mysql.rds.aliyuncs.com/report_db?useUnicode=true&characterEncoding=UTF-8
+
+
+{
+"data": [#注释<array>绑定对象
+	{
+	"planId": 1,计划id <number>
+	"taskId": 1,任务id <number>
+	"taskName": "任务修改-测试",任务名称 <string>
+	"cntUser": 200,总人数 <number>
+	"takeNum": 22,阅读/参与人数 <number>
+	"scale": 11占比 <number>
+	}
+],
+"code": 200,#注释 <number>
+"mes": "success",#注释  <string>
+"page": null#注释  <string>
+}
+
+data": [#注释<array>绑定对象
+	{
+	"planId": 1,计划id <number>
+	"orgId": 3,二级组织id <number>
+	"orgName": "2",二级组织名称 <string>
+	"cntUser": 330,总人数 <number>
+	"takeNum": 222,阅读/已参与人数 <number>
+	"scale": 67.27占比 <number>
+	}
+],
+
+"data": [#注释<array>绑定对象
+	{
+	"userDate": "2019-03-31",日期 <string>
+	"userCnt": 2,登录人数 <number>
+	"appId": "cs"企业id <string>
+	}
+],
+
+
+{
+"code": 102,状态码 <number>
+"dataArray": [ ],
+"dataObject": [返回对象<array>绑定对象
+	{
+	"appId": "cs",企业id <string>
+	"cntUser": 0,人数 <number>
+	"userHour": 1小时数(1-24) <number>
+	}
+],
+"dataType": 102,#注释  <number>
+"status": 0,#注释  <number>
+"userStatus": 0#注释  <number>
+}
+
+"data": {#注释<object>绑定对象
+	"planId": 31,计划id <number>
+	"planCateId": 12,#注释  <number>
+	"planName": "222cccc",#注释  <string>
+	"planExplain": "213",#注释  <string>
+	"planStatus": "2",#注释  <string>
+	"startTime": "2018-02-07 00:00:00",#注释  <string>
+	"endTime": "2019-04-26 00:00:00",#注释  <string>
+	"createUser": 325256810,#注释  <number>
+	"createTime": "2019-04-12 17:09:51",#注释  <string>
+	"updateUser": 325256810,#注释  <number>
+	"updateTime": "2019-04-16 18:53:52",#注释  <string>
+	"appId": "cs",#注释  <string>
+	"isDelete": "0"#注释  <string>
+},
+
+
+15258 49325 942
+
+
+4.11 发版后后我更改的文件
+4.15 10：40 
+QuestionnaireReport  1
+
+4.16 11：00
+ActivityAPI 1
+ArticleDto 1
+CoverUserOrg 1
+ConMgnAPI 1
+ExamPassCount 1
+ExamAPI 1
+UserCntApi 1
+UserCntServiceImpl 1
+UserCntService 1
+UserCntDaoImpl 1
+UserCntDao 1
+ActivityInfoServiceImpl 1
+IActivityInfoService 1
+ArticleServiceImpl 1
+IArticleService 1
+ArticleDaoImpl 1
+IArticleDao 1
+ExampaperServiceImpl 1
+IExampaperService 1
+ExampaperDaoImpl 1
+IExampaperDao 1
+StringUtil 1
+api.xml 1
+user.xml 1
+
+4.16 15:59
+UserCntDao
+UserCntApi
+UserCntServiceImpl
+UserCntService
+UserCntDaoImpl
+UserCntDao
+
+4.17 10:09 10:15
+view_article.jsp 1
+
+4.17 11:42
+ConMgnAPI
+
+
+
+http://localhost:8070/reportquestionnairedownloadXLSNew3.jhtml?pid=5cb6c0ae34975112808a7266
+
+{"_id":ObjectId("56c0448743e53d10b538f23d")}
+
+
+316036521
+
+316036524
+
+316036529
+
+
+
+"data": [#注释<array>绑定对象
+	{
+	"logId": 49,得分日志id <number>
+	"sysUserId": 314610098,用户id <number>
+	"score": 3,积分 <number>
+	"scoreDesc": "回答",积分名称 <string>
+	"appId": "csb",企业id <string>
+	"createUser": 314610098,积分生成人id <number>
+	"createTime": "2019-04-23 16:07:36"积分生成时间 <string>
+	}
+],
+
+"data": [#注释<array>绑定对象
+	{
+	"logId": 49,得分日志id <number>
+	"appId": "csb",企业id <string>
+	"score": "+3",领取的积分数 <string>
+	"scoreDesc": "回答",积分名称 <string>
+	"totalScore": 3,个人总积分 <number>
+	"remark": null,备注 <string>
+	"takenUser": 314610098,领取人id <number>
+	"takenTime": "2019-04-24 09:52:30"领取时间 <string>
+	}
+],
+
+"data": {数据对象<object>绑定对象
+	"list": [排行榜list<array>绑定对象
+		{
+		"sysUserId": 314610098,人员id <number>
+		"userName": "cs001",人员名称 <string>
+		"headPic": "http://supershoper.xxynet.com/FowSINv7FQDP2R5rr1xjAONwhKRN",头像图片 <string>
+		"score": 29,积分 <number>
+		"sort": 1排名 <number>
+		}
+	],
+	"userData": {个人排名对象<object>绑定对象
+		"sysUserId": 314610098,个人id <number>
+		"userName": "cs001",人员名称 <string>
+		"headPic": "http://supershoper.xxynet.com/FowSINv7FQDP2R5rr1xjAONwhKRN",头像图片 <string>
+		"score": 29,积分 <number>
+		"sort": 1排名 <number>
+	}
+},

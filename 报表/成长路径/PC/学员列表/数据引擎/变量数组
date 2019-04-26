@@ -1,0 +1,23 @@
+path_name
+and t2.path_name like '%@path_name%'
+path_name
+
+checkpoint_name
+and t3.NAME like '%@checkpoint_name%'
+checkpoint_name
+
+teacher_name
+and (TBL.assess_user_name like '%@teacher_name%' or TBL.teaching_user_name like '%@teacher_name%' or TBL.exercise_assess_name1 like '%@teacher_name%' or TBL.exercise_assess_name2 like '%@teacher_name%')
+teacher_name
+
+ck_flag
+and TBL.ck_flag= '@ck_flag'
+ck_flag
+
+user_name
+and u1.name like '%@user_name%'
+user_name
+
+user_post
+and u1.user_post= '@user_post'
+user_post

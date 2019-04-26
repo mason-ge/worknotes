@@ -37,8 +37,8 @@
 			)
 			WHERE
 				1 = 1
+                       
 			AND ta.app_id = '@##org_app_id##@'
-			
 			GROUP BY
 				tad.content_id,
 				tad.app_id
@@ -50,15 +50,12 @@
 			1 = 1
 		AND t.app_id = '@##org_app_id##@'
 		AND t.del_flag = '0'
-        AND e.lecturer_user_id in (@##auth_user_ids##@)
         {#ph#user_name#ph#}
         {#ph#content_title#ph#}
-        {#ph#tag_name#ph#}
         {#ph#create_time_from#ph#}
         {#ph#create_time_to#ph#}
+        {#ph#tag_name#ph#}
 		{#ph#belong_org#ph#}
 		ORDER BY
 			t.create_time DESC
 	) TBL
-
-

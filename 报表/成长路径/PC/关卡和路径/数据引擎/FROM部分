@@ -35,7 +35,7 @@ FROM
 		)
 		WHERE
 			cp.app_id = '@##org_app_id##@'
-            and cp.delete_flag = '0'
+                        and cp.delete_flag = '0'
 	) t
 LEFT JOIN growup_checkpoint gc ON (
 	t.checkpoint_id = gc.checkpoint_id

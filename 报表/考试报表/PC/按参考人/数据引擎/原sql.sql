@@ -21,7 +21,14 @@ FROM
 	TBCP.max_score AS max_score,
 	TBCP.avg_score AS avg_score,
 	u.user_post,
-	u.shop_name
+	TBO.org_code,
+	TBO.org_name,
+
+IF (
+	u.org_type = '5',
+	os.nature,
+	'-'
+) AS nature
 FROM
 	(
 		SELECT
@@ -51,18 +58,125 @@ FROM
 			t.exam_id = e.exam_id
 			AND t.app_id = e.app_id
 		)
+		LEFT JOIN sys_user su ON (
+			su.sys_user_id = '@##org_user_id##@'
+		)
+		LEFT JOIN sys_user su2 ON (
+			su2.sys_user_id = t.sys_user_id
+			AND su2.app_id = t.app_id
+		)
 		WHERE
 			1 = 1
 		AND t.del_flag = '0'
 		AND e.exam_type = '3'
 		AND e.del_flag = '0'
-		AND T.app_id = 'csb'
+		AND t.app_id = 'csb'
+		AND e.app_id = 'csb'
 		ORDER BY
 			e.create_time DESC
 	) TBC
 LEFT JOIN sys_user u ON (
 	TBC.sys_user_id = u.sys_user_id
 	AND TBC.app_id = u.app_id
+)
+LEFT JOIN sys_org_shop os ON (
+	u.belong_org = os.sys_org_id
+	AND u.app_id = os.app_id
+)
+LEFT JOIN (
+	SELECT
+		org.sys_org_id,
+		org. CODE AS org_code,
+		org. NAME AS org_name,
+		org.app_id
+	FROM
+		(
+			(
+				SELECT
+					sys_org_id,
+					CODE,
+					NAME,
+					app_id
+				FROM
+					sys_org_company
+				WHERE
+					1 = 1
+				AND delete_flag = 0
+				AND app_id = 'csb'
+			)
+			UNION ALL
+				(
+					SELECT
+						sys_org_id,
+						CODE,
+						NAME,
+						app_id
+					FROM
+						sys_org_agent
+					WHERE
+						1 = 1
+					AND delete_flag = 0
+					AND app_id = 'csb'
+				)
+			UNION ALL
+				(
+					SELECT
+						sys_org_id,
+						CODE,
+						NAME,
+						app_id
+					FROM
+						sys_org_area
+					WHERE
+						1 = 1
+					AND delete_flag = 0
+					AND app_id = 'csb'
+				)
+			UNION ALL
+				(
+					SELECT
+						sys_org_id,
+						CODE,
+						NAME,
+						app_id
+					FROM
+						sys_org_dep
+					WHERE
+						1 = 1
+					AND delete_flag = 0
+					AND app_id = 'csb'
+				)
+			UNION ALL
+				(
+					SELECT
+						sys_org_id,
+						CODE,
+						NAME,
+						app_id
+					FROM
+						sys_org_shop
+					WHERE
+						1 = 1
+					AND delete_flag = 0
+					AND app_id = 'csb'
+				)
+			UNION ALL
+				(
+					SELECT
+						sys_org_id,
+						CODE,
+						NAME,
+						app_id
+					FROM
+						sys_org_enterprise
+					WHERE
+						1 = 1
+					AND app_id = 'csb'
+				)
+		) org
+) TBO ON (
+	TBO.sys_org_id = u.belong_org
+	AND TBO.app_id = u.app_id
 )
 LEFT JOIN (
 	SELECT

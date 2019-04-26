@@ -23,7 +23,7 @@ and e.exam_species like '%@exam_species%'
 exam_species
 
 user_post
-and TBL.user_post like '%@user_post%'
+and su2.user_post = '@user_post'
 user_post
 
 exam_title

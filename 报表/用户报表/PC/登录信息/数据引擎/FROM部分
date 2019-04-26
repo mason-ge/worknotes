@@ -17,6 +17,7 @@
 				WHERE
 					1 = 1
 				AND t.app_id = '@##org_app_id##@'
+{#ph#user_post#ph#}
 				order by t.create_time desc
 			) TBT
 		LEFT JOIN (

@@ -143,10 +143,10 @@
 		LEFT JOIN (
 			SELECT
 				concat(YEAR(t.create_time),LPAD(MONTH(t.create_time),2,0)) AS pass_month,
-				count(
+				count( distinct
 					CASE
 					WHEN s.exam_pass_type = '9' THEN
-						s.sid
+						s.sys_user_id
 					ELSE
 						NULL
 					END

@@ -33,8 +33,7 @@
 			1 = 1
 		AND t. STATUS <> 3
 		AND t.app_id = '@##org_app_id##@'
-        AND t.lecturer_user_id in (@##auth_user_ids##@)
         {#ph#user_name#ph#}
         {#ph#belong_org#ph#}
-        order by t.recommend_flag
+        order by t.recommend_flag desc
 	) TBL

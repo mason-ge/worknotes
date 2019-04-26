@@ -8,7 +8,7 @@ create_time_from
 and t.create_time >= '@create_time_from'
 
 user_post
-and su.user_post like '%@user_post%'
+and su.user_post ='@user_post'
 
 create_time_to	
 and t.create_time <= '@create_time_to'

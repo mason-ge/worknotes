@@ -60,10 +60,9 @@ FROM
 					exam t
 				WHERE
 					1 = 1
-				AND t.app_id = 'MCLON'
+				AND t.app_id = 'csb'
 				AND t.exam_type = '3'
 				AND t.del_flag = '0'
-				AND t.exam_title = '2019全员培训考试（测试）'
 				ORDER BY
 					t.create_time DESC
 			) TBA
@@ -77,7 +76,7 @@ FROM
 			WHERE
 				1 = 1
 			AND t.exam_type = '3'
-			AND t.app_id = 'MCLON'
+			AND t.app_id = 'csb'
 			AND t.del_flag = '0'
 			GROUP BY
 				eq.exam_id
@@ -94,7 +93,7 @@ FROM
 			WHERE
 				1 = 1
 			AND t.exam_type = '3'
-			AND t.app_id = 'MCLON'
+			AND t.app_id = 'csb'
 			AND t.del_flag = '0'
 			GROUP BY
 				s.exam_id,
@@ -121,7 +120,7 @@ FROM
 			WHERE
 				1 = 1
 			AND t.exam_type = '3'
-			AND t.app_id = 'MCLON'
+			AND t.app_id = 'csb'
 			AND t.del_flag = '0'
 			GROUP BY
 				ed.question_id,
@@ -152,10 +151,10 @@ FROM
 					FROM
 						exam_detail ed
 					LEFT JOIN statistics s ON (s.sid = ed.statistics_id)
+					LEFT JOIN exam t ON (s.exam_id = t.exam_id)
 					LEFT JOIN question qs ON (
 						ed.question_id = qs.question_id
 					)
-					LEFT JOIN exam t ON (s.exam_id = t.exam_id)
 					WHERE
 						1 = 1
 					AND ed.answer_id IS NOT NULL
@@ -163,7 +162,7 @@ FROM
 					AND qs.rights IS NOT NULL
 					AND qs.rights <> ''
 					AND t.exam_type = '3'
-					AND t.app_id = 'MCLON'
+					AND t.app_id = 'csb'
 					AND t.del_flag = '0'
 				) TBED
 			WHERE
