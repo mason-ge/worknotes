@@ -9,3 +9,11 @@ cd /usr/local/project/dbMonitor
 pkill -f .*dbMonitor-uber.*.jar
 nohup java -jar /usr/local/project/dbMonitor/dbMonitor-uber*.jar 8083 </dev/null >/usr/local/project/dbMonitor/dbMonitor.log 2>&1 &
 tail -f dbMonitor.log -n  200
+
+
+INSERT INTO app_module_type(m_type_id, m_type_name, app_id, m_flag) VALUES(111, '我的徽章', 'vzvk', 1);
+
+-- -------------------geyunlong begin------------------------------------
+--添加app模块类型(我的徽章)
+INSERT INTO app_module_type(m_type_id, m_type_name, app_id, m_flag) VALUES(111, '我的徽章', 'vzvk', 1);
+-- -------------------geyunlong begin------------------------------------
